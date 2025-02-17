@@ -5,12 +5,12 @@ from openai import OpenAI
 import json
 
 api_key = st.secrets["auth_token"]
-client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY", api_key))
+openai_client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY", api_key))
 
 
 # Function to rephrase the sentence
 def rephraser_model(content, model="gpt-4o-mini"):
-    openai_client = client
+    openai_client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY", api_key))
 
     messages = [
         {
@@ -32,7 +32,7 @@ def rephraser_model(content, model="gpt-4o-mini"):
 
 # Function to apply the chain-of-thought
 def CoT_model(content, model="gpt-4o-mini"):
-    openai_client = client
+    openai_client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY", api_key))
 
     messages = [
         {
