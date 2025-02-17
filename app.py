@@ -79,10 +79,10 @@ if st.button("Start"):
             st.write(final_result)
 
         # Option to save the final result
-        if st.button("Save to File"):
-            output_file_path = "output.txt"
-            with open(output_file_path, 'w', encoding='utf-8') as outfile:
-                outfile.write(final_result)
-            st.success(f"Result saved to {output_file_path}")
+        # if st.button("Save to File"):
+        #     output_file_path = "output.txt"
+        #     with open(output_file_path, 'w', encoding='utf-8') as outfile:
+        #         outfile.write(final_result)
+        #     st.success(f"Result saved to {output_file_path}")
     else:
         st.warning("Please enter a prompt to process.")
