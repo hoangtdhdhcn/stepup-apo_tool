@@ -6,10 +6,13 @@ import json
 
 os.environ['OPENAI_API_KEY'] = ''
 
+api_key = st.secrets["auth_token"]
+client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY", api_key))
+
 
 # Function to rephrase the sentence
 def rephraser_model(content, model="gpt-4o-mini"):
-    openai_client = OpenAI()
+    openai_client = client
 
     messages = [
         {
@@ -31,7 +34,7 @@ def rephraser_model(content, model="gpt-4o-mini"):
 
 # Function to apply the chain-of-thought
 def CoT_model(content, model="gpt-4o-mini"):
-    openai_client = OpenAI()
+    openai_client = client
 
     messages = [
         {
