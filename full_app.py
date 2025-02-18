@@ -80,7 +80,7 @@ def Judger(content, model="gpt-4o-mini"):
             You are the LLM evaluator/judger. Based on the context below, which is the requirements to access the performance of the LLM. 
             I will provide you the dialogues that contains the responses from LLM, in which LLM is Pika. 
             Please evaluate the dialogues to check if the LLM follow the requirements during the conversation or not. 
-            Please also decide the metrics to evaluate and output the score in dict format. Only return the dictionary, and don't return any other information.
+            Please also decide the metrics to evaluate and output the score in dict format. Only return the dictionary of score, and don't return any other information.
             """},
             {"role": "user", "content": content}
         ]
