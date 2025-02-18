@@ -5,8 +5,8 @@ import prompt_utils
 from long_term_memory_manager import LongTermMemoryManager
 
 # Securely load API key
-os.environ['OPENAI_API_KEY'] = ''
-openai_client = OpenAI()
+# os.environ['OPENAI_API_KEY'] = ''
+# openai_client = OpenAI()
 
 with open(r"prompt.txt", "r", encoding="utf-8") as file:
     prompt_content = file.read()
