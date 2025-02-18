@@ -125,7 +125,7 @@ def chat_loop_v1(question_list):
 
         if response_string:
             # Format conversation entry
-            entry = f"User: {user_input}\n{chatbot_name}: {response_string}\n\n"
+            entry = f"User: {user_input}\n\n{chatbot_name}: {response_string}\n\n"
 
             # Store conversation in memory
             conversation_log.append(entry)
