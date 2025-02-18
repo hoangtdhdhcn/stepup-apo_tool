@@ -4,6 +4,9 @@ from openai import OpenAI
 import prompt_utils
 from long_term_memory_manager import LongTermMemoryManager
 
+api_key = st.secrets["auth_token"]
+openai_client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY", api_key))
+
 # Display current date and time
 curr_date, day_of_week, curr_time = prompt_utils.get_current_time()
 print(f'-------------------------------\n{curr_date}\n{day_of_week}\n{curr_time}\n-------------------------------')
