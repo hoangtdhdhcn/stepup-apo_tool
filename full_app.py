@@ -5,8 +5,8 @@ from openai import OpenAI
 from chat_memgpt import load_questions_from_txt, chat_loop_v1
 
 # Load API key securely
-
-openai_client = OpenAI()
+api_key = st.secrets["auth_token"]
+openai_client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY", api_key))
 
 # Function to rephrase the sentence
 def rephraser_model(content, model="gpt-4o-mini"):
