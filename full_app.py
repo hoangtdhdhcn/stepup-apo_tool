@@ -59,6 +59,17 @@ def Questioner(content, model="gpt-4o-mini"):
             Put all of your questions in the list.
             Each part only need one question. Questions are in Vietnamese.
             The output must be in list format only, it not be the string, and don't contain any other information or special characters.
+            Some examples of the output, it must follow the following format:
+                - Chào Pika! Bạn có thể kể cho mình về những loài động vật nào thú vị không?
+                - Pika có biết con vật nào có thể sống lâu nhất trên thế giới không?
+                - Bạn có thể giải thích cho mình nghe về cách mà các loài chim bay được không?
+                - Pika có biết tại sao cá mập lại không phải là cá? 
+                - Con vật yêu thích của Pika là gì và tại sao?
+                - Tại sao một số loài động vật lại có khả năng ngủ trong thời gian dài?
+                - Pika có thể giúp mình hiểu về hệ sinh thái rừng mưa không? 
+                - Có phải động vật cũng có thể cảm thấy buồn giống như con người không? 
+                - Bạn có biết con nào nhanh nhất trên cạn không?
+                - Pika có thể nói về sự đa dạng của các loài côn trùng không?
             """},
             {"role": "user", "content": content}
         ]
