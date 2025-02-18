@@ -80,7 +80,8 @@ def Judger(content, model="gpt-4o-mini"):
             You are the LLM evaluator/judger. Based on the context below, which is the requirements to access the performance of the LLM. 
             I will provide you the dialogues that contains the responses from LLM, in which LLM is Pika. 
             Please evaluate the dialogues to check if the LLM follow the requirements during the conversation or not. 
-            Please also decide the metrics to evaluate and output the score in dict format, the score for each metric is at least 4/5. Only return the dictionary of score, and don't return any other information.
+            Please also decide the metrics to evaluate and output the score in dict format. The scale of score is 5, and the score for each part is at least 4/5. 
+            Only return the dictionary of score, and don't return any other information.
             """},
             {"role": "user", "content": content}
         ]
@@ -126,14 +127,14 @@ if st.button("Start"):
             if questions_list_str:
                 questions_list = [q.strip() for q in questions_list_str.split("- ") if q.strip()]
 
-                # st.subheader("Generated Questions for Evaluation")
-                # st.write(questions_list)
+                st.subheader("Generated Questions for Evaluation")
+                st.write(questions_list)
 
                 with st.spinner("Simulating conversation..."):
                     conversation_result = chat_loop_v1(questions_list)
 
-                # st.subheader("Conversation Log")
-                # st.write(conversation_result)
+                st.subheader("Conversation Log")
+                st.write(conversation_result)
 
                 full_context_for_Judger = (
                     "The following is the requirements for the LLM:\n"
