@@ -3,6 +3,7 @@ import time
 from openai import OpenAI
 import prompt_utils
 from long_term_memory_manager import LongTermMemoryManager
+import streamlit as st
 
 api_key = st.secrets["auth_token"]
 openai_client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY", api_key))
