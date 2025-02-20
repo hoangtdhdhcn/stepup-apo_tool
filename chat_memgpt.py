@@ -139,6 +139,43 @@ def chat_loop_v1(question_list):
 
     return "".join(conversation_log) 
 
+def chat_loop_v2(question_list, custom_prompt=None):
+    global curr_conversation_history
+    conversation_log = []  # Store conversation as a list of strings
+
+    for question in question_list:
+        user_input = question
+
+        if user_input.lower() in ["exit", "quit"]:
+            break
+
+        # Use the custom prompt if provided, otherwise use default conversation history
+        if custom_prompt:
+            user_prompt = {"role": "user", "content": custom_prompt + " " + user_input}
+        else:
+            user_prompt = {"role": "user", "content": user_input}
+
+        chatgpt_query = curr_conversation_history + [user_prompt]  
+
+        response_string = send_query_to_chatgpt(chatgpt_query)
+
+        if response_string:
+            # Format conversation entry
+            entry = f"User: {user_input}\n\n{chatbot_name}: {response_string}\n\n"
+
+            # Store conversation in memory
+            conversation_log.append(entry)
+
+            # Update conversation history
+            curr_conversation_history.append(user_prompt)
+            curr_conversation_history.append({"role": "assistant", "content": response_string})
+        else:
+            error_entry = f"User: {user_input}\nError: Unable to retrieve response.\n\n"
+            conversation_log.append(error_entry)
+
+    return "".join(conversation_log)
+
+
 
 # if __name__ == "__main__":
     # questions_txt_path = r"questions.txt"
