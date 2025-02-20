@@ -56,7 +56,6 @@ def Questioner(content, model="gpt-4o"):
             {"role": "system", "content": """
             In role of Student/Child in the provided context.
             Prepare the answers that you will respond to the LLM (Pika) to interact with it, the answers will be based on the provided context.
-            Put all of your answers in the list.
             Answers are in Vietnamese.
             The output must be in list format only, it not be the string, and don't contain any other information or special characters.
             You must follow the output format below:
