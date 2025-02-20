@@ -50,7 +50,7 @@ def CoT_model(content, model="gpt-4o-mini"):
         return None
 
 # Function to generate questions based on the prompt
-def Questioner(content, model="gpt-4o-mini"):
+def Questioner(content, model="gpt-4o"):
     try:
         messages = [
             {"role": "system", "content": """
@@ -59,7 +59,7 @@ def Questioner(content, model="gpt-4o-mini"):
             Put all of your answers in the list.
             Answers are in Vietnamese.
             The output must be in list format only, it not be the string, and don't contain any other information or special characters.
-            Some examples of the output format:
+            You must follow the output format below:
                 - <put ... here>
                 - <put first answer here>
                 - <put second answer here>
