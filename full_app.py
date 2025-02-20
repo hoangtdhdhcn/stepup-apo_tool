@@ -55,16 +55,17 @@ def Questioner(content, model="gpt-4o-mini"):
         messages = [
             {"role": "system", "content": """
             In role of Student/Child in the provided context.
-            Prepare 5 questions that you will ask the LLM (Pika) to interact with it, the questions will based on the provided context.
-            Put all of your questions in the list.
-            Each part only need one question. Questions are in Vietnamese.
+            Prepare the answers that you will respond to the LLM (Pika) to interact with it, the answers will be based on the provided context.
+            Put all of your answers in the list.
+            Answers are in Vietnamese.
             The output must be in list format only, it not be the string, and don't contain any other information or special characters.
             Some examples of the output format:
-                - <put question here>
-                - <put question here>
-                - <put question here>
-                - <put question here>
-                - <put question here>
+                - <put ... here>
+                - <put first answer here>
+                - <put second answer here>
+                - <put third answer here>
+                - <put fourth answer here>
+                - <put fifth answer here>
             The following is the provided context:
             """},
             {"role": "user", "content": content}
