@@ -132,14 +132,14 @@ if st.button("Start"):
             if questions_list_str:
                 questions_list = [q.strip() for q in questions_list_str.split("- ") if q.strip()]
 
-                # st.subheader("Generated Questions for Evaluation")
-                # st.write(questions_list)
+                st.subheader("Generated Questions for Evaluation")
+                st.write(questions_list)
 
                 with st.spinner("Simulating conversation..."):
                     conversation_result = chat_loop_v1(questions_list)
 
-                # st.subheader("Conversation Log")
-                # st.write(conversation_result)
+                st.subheader("Conversation Log")
+                st.write(conversation_result)
 
                 full_context_for_Judger = (
                     "The following is the requirements for the LLM:\n"
@@ -162,14 +162,14 @@ if st.button("Start"):
             if questions_list_str:
                 questions_list = [q.strip() for q in questions_list_str.split("- ") if q.strip()]
 
-                # st.subheader("Generated Questions for Evaluation")
-                # st.write(questions_list)
+                st.subheader("Generated Questions for Evaluation")
+                st.write(questions_list)
 
                 with st.spinner("Simulating conversation..."):
                     conversation_result = chat_loop_v1(questions_list)
 
-                # st.subheader("Conversation Log")
-                # st.write(conversation_result)
+                st.subheader("Conversation Log")
+                st.write(conversation_result)
 
                 full_context_for_Judger = (
                     "The following is the requirements for the LLM:\n"
