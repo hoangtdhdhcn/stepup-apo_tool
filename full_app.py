@@ -9,7 +9,7 @@ api_key = st.secrets["auth_token"]
 openai_client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY", api_key))
 
 # Function to rephrase the sentence
-def rephraser_model(content, model="gpt-4o"):
+def rephraser_model(content, model="gpt-4o-mini"):
     try:
         messages = [
             {"role": "system", "content": """
@@ -29,7 +29,7 @@ def rephraser_model(content, model="gpt-4o"):
         return None
 
 # Function to apply chain-of-thought
-def CoT_model(content, model="gpt-4o"):
+def CoT_model(content, model="gpt-4o-mini"):
     try:
         messages = [
             {"role": "system", "content": """
@@ -110,12 +110,12 @@ input_sentence = st.text_area("Enter a prompt for processing:")
 if st.button("Start"):
     if input_sentence:
         # Create two tabs
-        tab1, tab2 = st.tabs(["APO Result", "Evaluation Score"])
+        tab1, tab2, tab3 = st.tabs(["APO Result", "Original Prompt","New Prompt"])
 
         with tab1:
             st.subheader("Enhanced Prompt")
 
-            with st.spinner("Processing step 1: Optimizing Long Prompt..."):
+            with st.spinner("Processing step 1: Rephrasing..."):
                 rephrased_sentence = rephraser_model(input_sentence)
 
             if rephrased_sentence:
@@ -124,23 +124,52 @@ if st.button("Start"):
 
                 if final_result:
                     st.write(final_result)
-
         with tab2:
-            st.subheader("Prompt Evaluation Score")
+            st.subheader("Original Prompt Evaluation Score")
             with st.spinner("Generating test questions..."):
                 questions_list_str = Questioner(input_sentence)
 
             if questions_list_str:
                 questions_list = [q.strip() for q in questions_list_str.split("- ") if q.strip()]
 
-                st.subheader("Generated Questions for Evaluation")
-                st.write(questions_list)
+                # st.subheader("Generated Questions for Evaluation")
+                # st.write(questions_list)
 
                 with st.spinner("Simulating conversation..."):
                     conversation_result = chat_loop_v1(questions_list)
 
-                st.subheader("Conversation Log")
-                st.write(conversation_result)
+                # st.subheader("Conversation Log")
+                # st.write(conversation_result)
+
+                full_context_for_Judger = (
+                    "The following is the requirements for the LLM:\n"
+                    + input_sentence + "\n\n"
+                    + "The following is the content of the conversation between LLM and the user:\n"
+                    + conversation_result
+                )
+
+                with st.spinner("Evaluating performance..."):
+                    eval_score = Judger(full_context_for_Judger)
+
+                if eval_score:
+                    st.subheader("Evaluation Score")
+                    st.write(f"**Score:** {eval_score}")
+        with tab3:
+            st.subheader("New Prompt Evaluation Score")
+            with st.spinner("Generating test questions..."):
+                questions_list_str = Questioner(final_result)
+
+            if questions_list_str:
+                questions_list = [q.strip() for q in questions_list_str.split("- ") if q.strip()]
+
+                # st.subheader("Generated Questions for Evaluation")
+                # st.write(questions_list)
+
+                with st.spinner("Simulating conversation..."):
+                    conversation_result = chat_loop_v1(questions_list)
+
+                # st.subheader("Conversation Log")
+                # st.write(conversation_result)
 
                 full_context_for_Judger = (
                     "The following is the requirements for the LLM:\n"
