@@ -138,7 +138,7 @@ if st.button("Start"):
                 st.write(questions_list)
 
                 with st.spinner("Simulating conversation..."):
-                    conversation_result = chat_loop_v1(questions_list)
+                    conversation_result = chat_loop_v2(questions_list, input_sentence)
 
                 st.subheader("Conversation Log")
                 st.write(conversation_result)
@@ -168,7 +168,7 @@ if st.button("Start"):
                 st.write(questions_list)
 
                 with st.spinner("Simulating conversation..."):
-                    conversation_result = chat_loop_v1(questions_list)
+                    conversation_result = chat_loop_v2(questions_list, final_result)
 
                 st.subheader("Conversation Log")
                 st.write(conversation_result)
