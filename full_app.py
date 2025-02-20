@@ -60,7 +60,7 @@ def Questioner(content, model="gpt-4o"):
             Answers are in Vietnamese.
             The output must be in list format only, it not be the string, and don't contain any other information or special characters.
             You must follow the output format below:
-                - <put ... here>
+                - <put "..." here>
                 - <put first answer here>
                 - <put second answer here>
                 - <put third answer here>
