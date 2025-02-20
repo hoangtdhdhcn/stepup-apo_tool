@@ -54,8 +54,8 @@ def Questioner(content, model="gpt-4o-mini"):
     try:
         messages = [
             {"role": "system", "content": """
-            In role of user, imagine you will be in the conversation with the LLM in the provided context. 
-            Prepare 5 questions that you will ask the LLM to test its role-play capability.  
+            In role of user, imagine you will be in the conversation with the LLM in the provided context, the context like a role-play. 
+            Prepare 5 questions that you will ask the LLM to interact with it based on the provided context.
             Put all of your questions in the list.
             Each part only need one question. Questions are in Vietnamese.
             The output must be in list format only, it not be the string, and don't contain any other information or special characters.
