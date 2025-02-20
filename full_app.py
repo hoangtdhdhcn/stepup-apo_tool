@@ -2,7 +2,7 @@ import os
 import time
 import streamlit as st
 from openai import OpenAI
-from chat_memgpt import load_questions_from_txt, chat_loop_v1
+from chat_memgpt import load_questions_from_txt, chat_loop_v1, chat_loop_v2
 
 # Load API key securely
 api_key = st.secrets["auth_token"]
