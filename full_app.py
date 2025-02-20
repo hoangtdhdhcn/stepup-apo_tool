@@ -34,7 +34,7 @@ def CoT_model(content, model="gpt-4o-mini"):
         messages = [
             {"role": "system", "content": """
             Your task is to take a given sentence, and produce a new sentence that can help the language models improve their reasoning.
-            Keep all the content of the given sentence, apply the chain-of-thought technique to the this sentence.
+            Keep all the content of the given sentence, only apply the chain-of-thought technique to this sentence.
             The chain-of-thought technique here is very simple, you only need to add this sentence 'Let think step-by-step' to the suitable position to help improve the reasoning of language models.
             """},
             {"role": "user", "content": content}
@@ -54,22 +54,17 @@ def Questioner(content, model="gpt-4o-mini"):
     try:
         messages = [
             {"role": "system", "content": """
-            In role of user, imagine you will be in the conversation with the Pika in the provided context. 
-            Prepare 5 questions that you will ask the Pika to test its role-play capability.  
+            In role of user, imagine you will be in the conversation with the LLM in the provided context. 
+            Prepare 5 questions that you will ask the LLM to test its role-play capability.  
             Put all of your questions in the list.
             Each part only need one question. Questions are in Vietnamese.
             The output must be in list format only, it not be the string, and don't contain any other information or special characters.
-            Some examples of the output, the content of questions could be different, but their format must follow the following format:
-                - Chào Pika! Bạn có thể kể cho mình về những loài động vật nào thú vị không?
-                - Pika có biết con vật nào có thể sống lâu nhất trên thế giới không?
-                - Bạn có thể giải thích cho mình nghe về cách mà các loài chim bay được không?
-                - Pika có biết tại sao cá mập lại không phải là cá? 
-                - Con vật yêu thích của Pika là gì và tại sao?
-                - Tại sao một số loài động vật lại có khả năng ngủ trong thời gian dài?
-                - Pika có thể giúp mình hiểu về hệ sinh thái rừng mưa không? 
-                - Có phải động vật cũng có thể cảm thấy buồn giống như con người không? 
-                - Bạn có biết con nào nhanh nhất trên cạn không?
-                - Pika có thể nói về sự đa dạng của các loài côn trùng không?
+            Some examples of the output format:
+                - <put question here>
+                - <put question here>
+                - <put question here>
+                - <put question here>
+                - <put question here>
             """},
             {"role": "user", "content": content}
         ]
@@ -89,7 +84,7 @@ def Judger(content, model="gpt-4o-mini"):
         messages = [
             {"role": "system", "content": """
             You are the LLM evaluator/judger. Based on the context below, which is the requirements to access the performance of the LLM. 
-            I will provide you the dialogues that contains the responses from LLM, in which LLM is Pika. 
+            I will provide you the dialogues that contains the responses from LLM, in which LLM is not User. 
             Please evaluate the dialogues to check if the LLM follow the requirements during the conversation or not. 
             Please also decide the metrics to evaluate and output the score in dict format. The scale of score is 5. 
             Only return the dictionary of score, and don't return any other information.
@@ -150,7 +145,7 @@ if st.button("Start"):
                 full_context_for_Judger = (
                     "The following is the requirements for the LLM:\n"
                     + input_sentence + "\n\n"
-                    + "The following is the content of the conversation between Pika and the user:\n"
+                    + "The following is the content of the conversation between LLM and the user:\n"
                     + conversation_result
                 )
 
