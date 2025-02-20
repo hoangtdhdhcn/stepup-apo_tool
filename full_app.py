@@ -115,7 +115,7 @@ if st.button("Start"):
         with tab1:
             st.subheader("Enhanced Prompt")
 
-            with st.spinner("Processing step 1: Rephrasing..."):
+            with st.spinner("Processing step 1: Optimizing Long Prompt..."):
                 rephrased_sentence = rephraser_model(input_sentence)
 
             if rephrased_sentence:
