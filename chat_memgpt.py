@@ -155,7 +155,7 @@ def chat_loop_v2(question_list, custom_prompt=None):
         else:
             user_prompt = {"role": "user", "content": user_input}
 
-        chatgpt_query = curr_conversation_history + [user_prompt]  
+        chatgpt_query = curr_conversation_history + [user_prompt]
 
         response_string = send_query_to_chatgpt(chatgpt_query)
 
@@ -172,6 +172,9 @@ def chat_loop_v2(question_list, custom_prompt=None):
         else:
             error_entry = f"User: {user_input}\nError: Unable to retrieve response.\n\n"
             conversation_log.append(error_entry)
+
+        # Wait for 1 second before processing the next question
+        time.sleep(1)
 
     return "".join(conversation_log)
 
