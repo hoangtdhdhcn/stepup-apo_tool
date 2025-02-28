@@ -35,6 +35,7 @@ def CoT_model(content, model="gpt-4o-mini"):
             {"role": "system", "content": """
             You are a professional paragraph rephraser. Your task is to take a given paragraph, and produce a new paragraph that is easier for language models to understand.
             Rephrase the paragraph to enhance the language model's performance.
+            The paragraph must be in English.
             """},
             {"role": "user", "content": content}
         ]
