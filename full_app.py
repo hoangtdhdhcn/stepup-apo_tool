@@ -33,8 +33,8 @@ def CoT_model(content, model="gpt-4o-mini"):
     try:
         messages = [
             {"role": "system", "content": """
-            Your task is to take a given paragraph, then applying the chain-of-thought technique to that paragraph.
-            Return the updated paragraph with chain-of-thought technique.
+            You are a professional paragraph rephraser. Your task is to take a given paragraph, and produce a new paragraph that is easier for language models to understand.
+            Rephrase the paragraph to enhance the language model's performance.
             """},
             {"role": "user", "content": content}
         ]
