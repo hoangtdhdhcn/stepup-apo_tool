@@ -111,7 +111,7 @@ input_sentence = st.text_area("Enter a prompt for processing:")
 if st.button("Start"):
     if input_sentence:
 
-        input_sentence_with_quotes = '"""' + input_sentence + '"""'
+        input_sentence_with_quotes = '""' + input_sentence + '""'
         
         # Create two tabs
         tab1, tab2, tab3 = st.tabs(["APO Result", "Original Prompt","New Prompt"])
