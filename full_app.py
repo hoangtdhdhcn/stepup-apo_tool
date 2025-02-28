@@ -110,6 +110,9 @@ input_sentence = st.text_area("Enter a prompt for processing:")
 
 if st.button("Start"):
     if input_sentence:
+
+        input_sentence_with_quotes = '"""' + input_sentence + '"""'
+        
         # Create two tabs
         tab1, tab2, tab3 = st.tabs(["APO Result", "Original Prompt","New Prompt"])
 
@@ -117,7 +120,7 @@ if st.button("Start"):
             st.subheader("Enhanced Prompt")
 
             with st.spinner("Processing step 1: Optimizing Long Prompt..."):
-                rephrased_sentence = rephraser_model(input_sentence)
+                rephrased_sentence = rephraser_model(input_sentence_with_quotes)
 
             if rephrased_sentence:
                 with st.spinner("Processing step 2: Applying Chain-of-Thought..."):
@@ -128,7 +131,7 @@ if st.button("Start"):
         with tab2:
             st.subheader("Original Prompt Evaluation Score")
             with st.spinner("Generating test questions..."):
-                questions_list_str = Questioner(input_sentence)
+                questions_list_str = Questioner(input_sentence_with_quotes)
 
             if questions_list_str:
                 questions_list = [q.strip() for q in questions_list_str.split("- ") if q.strip()]
@@ -137,14 +140,14 @@ if st.button("Start"):
                 st.write(questions_list)
 
                 with st.spinner("Simulating conversation..."):
-                    conversation_result = chat_loop_v2(questions_list, input_sentence)
+                    conversation_result = chat_loop_v2(questions_list, input_sentence_with_quotes)
 
                 st.subheader("Conversation Log")
                 st.write(conversation_result)
 
                 full_context_for_Judger = (
                     "The following is the requirements for the LLM:\n"
-                    + input_sentence + "\n\n"
+                    + input_sentence_with_quotes + "\n\n"
                     + "The following is the content of the conversation between LLM and the user:\n"
                     + conversation_result
                 )
@@ -174,7 +177,7 @@ if st.button("Start"):
 
                 full_context_for_Judger = (
                     "The following is the requirements for the LLM:\n"
-                    + input_sentence + "\n\n"
+                    + input_sentence_with_quotes + "\n\n"
                     + "The following is the content of the conversation between LLM and the user:\n"
                     + conversation_result
                 )
